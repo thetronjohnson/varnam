@@ -10,6 +10,8 @@ An easy to use transliterator for the web, desktop and mobile. Easily type India
 
 Project Plan -  https://github.com/users/subins2000/projects/2
 
+What we're changing : https://pad.disroot.org/p/varnam
+
 ### Design
 ---
 https://www.figma.com/file/DjKTWfeLtBVKKQ3T8uqFPq/Varnam_Editor?node-id=0%3A1
