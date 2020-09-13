@@ -1,5 +1,3 @@
-[designed_by]
-  other = "Designed by  <a href = '{{ .url }}' title = 'Linkedin Profile'>{{ .name }}</a>"
 [share_story]
   other = "Share Story"
 [link_copied]

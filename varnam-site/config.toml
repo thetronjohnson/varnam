@@ -1,8 +1,8 @@
 baseurl = "https://example.com/"  # Include trailing slash
-title = "Hugo Themes"
+title = "Varnam"
 theme = "hugo-swift-theme"
-author = "Steve Francia"
-copyright = "Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved."
+author = "Varnam"
+copyright = ""
 canonifyurls = true
 paginate = 4
 # Enable syntax highlighting
@@ -15,7 +15,7 @@ pygmentsCodefencesGuessSyntax = true
 
   # ga_verify = "" # google verification code e.g 5jb-rxeBfITeJQKOuUss3ud6FPGTxXkCho-ZN5qlrZg
   # twitter = "" # twitter handle e.g @weru
-  # logo = "logo.png"
+  # logo = "varnam_logo.png"
   # author = "Weru" # default author
   # image = "placeholder-image.png" # used whenever a page image is not set
   # blogDir = "blogFolderName" # uncomment and edit to exclude normal pages ... see issue #57
