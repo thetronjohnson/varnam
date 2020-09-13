@@ -13,6 +13,13 @@ Repos working on (orderd by layer. From package to the library) :
 
 Project Plan -  https://github.com/users/subins2000/projects/2
 
+Things done as part of [FOSSHack](https://fossunited.org/hackathon)
+
+* Made the [Varnam Editor](https://github.com/thetronjohnson/varnam-editor)
+* New Varnam Website : this repo
+* Port `varnamc` CLI utility from Ruby to C : https://github.com/subins2000/libvarnam/tree/varnamc-port-to-c
+* Mac OSX/Windows/Linux compilable varnam daemon : https://github.com/athul/varnamd/tree/feat/cache-dl
+
 What we're changing : https://pad.disroot.org/p/varnam
 
 ### Design
