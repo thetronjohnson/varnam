@@ -12,7 +12,7 @@ categories = [
     "Development",
     "golang",
 ]
-image = "stuck.jpg"
+image = "type_keyboard.jpg"
 +++
 
 Get your message across in the language and style you want. Switching among over many Indian languages and input methods is as seamless as typing.
