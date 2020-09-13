@@ -26,15 +26,10 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-        with:
           # The version of hugo to use.
-          hugo_version: 0.58.3
-          # If set to `true`, use the *extended* version of hugo.
-          hugo_extended: false # optional
-          # Your PAT to authorise the action to do things.
-          github_token: $GITHUB_TOKEN 
+          HUGO_VERSION: 0.58.3
           # The repo name you want to clone and push to.
-          target_repo: varnam
+          TARGET_REPO: thetronjohnson/varnam
+          HUGO_ARGS: ''
           # If you are defining a custom domain name for your GitHub site, put that value in this variable.
-          cname: typeindianlang.online
+          CNAME: typeindianlang.online
