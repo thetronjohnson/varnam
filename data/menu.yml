@@ -1,0 +1,13 @@
+- item: About
+  url: about/
+- item: Try it now
+  url: editor/
+- item: Downloads
+  url: downloads/
+- item: Documentation
+  url: documentation/
+- item: Issues
+  url: issues/
+- item: Git
+  url: git/
+  
