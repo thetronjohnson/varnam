@@ -11,14 +11,15 @@ Repos working on (orderd by layer. From package to the library) :
 * [go-libvarnam!](https://github.com/athul/go-libvarnam) - Go bindings for libvarnam
 * [libvarnam](https://github.com/subins2000/libvarnam) - The core library (C)
 
-Project Plan -  https://github.com/users/subins2000/projects/2
+Project Tracker -  https://github.com/users/subins2000/projects/2
 
-Things done as part of [FOSSHack](https://fossunited.org/hackathon)
+Things done as part of [FOSSHack](https://fossunited.org/hackathon) :
 
 * Made the [Varnam Editor](https://github.com/thetronjohnson/varnam-editor)
 * New Varnam Website : this repo
 * Port `varnamc` CLI utility from Ruby to C : https://github.com/subins2000/libvarnam/tree/varnamc-port-to-c
 * Mac OSX/Windows/Linux compilable varnam daemon : https://github.com/athul/varnamd/tree/feat/cache-dl
+* Varnam Online word review backend : https://github.com/subins2000/varnam-review
 
 What we're changing : https://pad.disroot.org/p/varnam
 
