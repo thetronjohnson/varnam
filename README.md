@@ -2,6 +2,8 @@
 
 An easy to use transliterator for the web, desktop and mobile. Easily type Indian languages.
 
+[TypeIndianLang.Online](https://TypeIndianLang.Online)
+
 Repos working on (orderd by layer. From package to the library) :
 
 * [varnam-flatpak](https://github.com/subins2000/varnam-flatpak) - Flatpak package for Varnam Editor (Linux)
@@ -15,10 +17,13 @@ Project Tracker -  https://github.com/users/subins2000/projects/2
 
 Things done as part of [FOSSHack](https://fossunited.org/hackathon) :
 
-* Made the [Varnam Editor](https://github.com/thetronjohnson/varnam-editor)
-* New Varnam Website : this repo
+* Try The Project @ [TypeIndianLang.Online](https://TypeIndianLang.Online)
+* Made the Varnam Editor : https://github.com/thetronjohnson/varnam-editor
+* New Varnam Website (hugo) : this repo
 * Port `varnamc` CLI utility from Ruby to C : https://github.com/subins2000/libvarnam/tree/varnamc-port-to-c
-* Mac OSX/Windows/Linux compilable varnam daemon : https://github.com/athul/varnamd/tree/feat/cache-dl
+* Mac OSX/Windows/Linux compilable varnam daemon (`varnamd`) : https://github.com/athul/varnamd/tree/feat/cache-dl
+  * Added missing endpoints in varnamd : https://github.com/athul/varnamd/tree/train
+  * Webview single binary desktop app : https://github.com/athul/varnamd/tree/webview
 * Varnam Online word review backend : https://github.com/subins2000/varnam-review
 
 What we're changing : https://pad.disroot.org/p/varnam
