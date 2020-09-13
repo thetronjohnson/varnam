@@ -1,5 +1,5 @@
 +++
-title = "Getting Started with Hugo"
+title = "Type the way you want"
 description = ""
 tags = [
     "go",
@@ -15,10 +15,7 @@ categories = [
 image = "stuck.jpg"
 +++
 
-## Step 1. Install Hugo
-
-Go to [Hugo releases](https://github.com/spf13/hugo/releases) and download the
-appropriate version for your OS and architecture.
+Get your message across in the language and style you want. Switching among over many Indian languages and input methods is as seamless as typing.
 
 Save it somewhere specific as we will be using it in the next step.
 

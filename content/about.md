@@ -1,10 +1,10 @@
 +++
-title = "About Hugo"
+title = "Online, offline, on the go"
 date = "2014-04-09"
 image = 'read.jpg'
 +++
 
-Hugo is the **world’s fastest framework for building websites**. It is written in Go.
+Whether at home, at work, or somewhere in between—communicate in the language you need, when you need it.
 
 It makes use of a variety of open source projects including:
 
