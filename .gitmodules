@@ -1,6 +1,6 @@
-[submodule "editor"]
-	path = editor
-	url = https://github.com/thetronjohnson/varnam-editor.git
 [submodule "themes/hugo-swift-theme"]
 	path = themes/hugo-swift-theme
 	url = https://github.com/onweru/hugo-swift-theme.git
+[submodule "static/editor"]
+	path = static/editor
+	url = https://github.com/thetronjohnson/varnam-editor.git
