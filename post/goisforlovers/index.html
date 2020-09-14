@@ -1,0 +1,112 @@
+<!doctype html><html lang=en><head><title>Personalized for you, by you | Varnam</title><meta charset=utf-8><meta name=generator content="Hugo 0.58.3"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:locale content=en_US><meta property=og:type content=article><meta property=og:title content="Personalized for you, by you"><meta name=description content="Varnam remembers your corrections and maintains a custom dictionary for new or uncommon words and names.
+This document is a brief primer on using Go templates. …"><meta property=og:description content="Varnam remembers your corrections and maintains a custom dictionary for new or uncommon words and names.
+This document is a brief primer on using Go templates. …"><meta property=og:url content=https://example.com/post/goisforlovers/><meta property=og:image content=https://example.com/images/fast-lane.jpg><meta name=twitter:card content=summary_large_image><meta name=twitter:creator content><meta name=twitter:title content="Personalized for you, by you"><meta property=twitter:description content="Varnam remembers your corrections and maintains a custom dictionary for new or uncommon words and names.
+This document is a brief primer on using Go templates. …"><meta name=twitter:image content=https://example.com/images/fast-lane.jpg><link rel=apple-touch-icon sizes=180x180 href=https://example.com/images/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://example.com/images/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://example.com/images/icons/favicon-16x16.png><link rel=manifest href=https://example.com/images/icons/site.webmanifest><link rel=canonical href=https://example.com/post/goisforlovers/><link rel=stylesheet href=https://example.com/css/styles.3581b5fd32b23ccd509a170d030760fdfbaa7ad633dde8fe599d88fb614e1975255e4fe09db386aec2ef5b2c397fbddd1566efa790bc3f212b1498eeb77d9c53.css integrity="sha512-NYG1/TKyPM1QmhcNAwdg/fuqetYz3ej&#43;WZ2I&#43;2FOGXUlXk/gnbOGrsLvWyw5f73dFWbvp5C8PyErFJjut32cUw=="></head><body><div class=nav-drop><div class=nav-body><a href=https://example.com/about/ class=nav_item>About</a>
+<a href=https://example.com/editor/ class=nav_item>Try it now</a>
+<a href=https://example.com/downloads/ class=nav_item>Downloads</a>
+<a href=https://example.com/documentation/ class=nav_item>Documentation</a>
+<a href=https://example.com/issues/ class=nav_item>Issues</a>
+<a href=https://example.com/git/ class=nav_item>Git</a><div class=nav-close></div></div></div><header class=nav><nav class=nav-menu><a href=https://example.com/ class="nav-brand nav_item">Varnam</a><div class=nav_bar-wrap><div class=nav_bar></div></div></nav></header><main><section class=post_header style=background-image:url(https://example.com/images/fast-lane.jpg)><h1 class=post_title>Personalized for you, by you</h1></section><div class=post><article class=post_content><p>Varnam remembers your corrections and maintains a custom dictionary for new or uncommon words and names.</p><p>This document is a brief primer on using Go templates. The <a href=https://golang.org/pkg/html/template/>Go docs</a>
+provide more details.</p><h2 id=introduction-to-go-templates>Introduction to Go Templates</h2><p>Go templates provide an extremely simple template language. It adheres to the
+belief that only the most basic of logic belongs in the template or view layer.
+One consequence of this simplicity is that Go templates parse very quickly.</p><p>A unique characteristic of Go templates is they are content aware. Variables and
+content will be sanitized depending on the context of where they are used. More
+details can be found in the <a href=https://golang.org/pkg/html/template/>Go docs</a>.</p><h2 id=basic-syntax>Basic Syntax</h2><p>Golang templates are HTML files with the addition of variables and
+functions.</p><p><strong>Go variables and functions are accessible within {{ }}</strong></p><p>Accessing a predefined variable &ldquo;foo&rdquo;:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ foo }}</pre></div><p><strong>Parameters are separated using spaces</strong></p><p>Calling the add function with input of 1, 2:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ add 1 2 }}</pre></div><p><strong>Methods and fields are accessed via dot notation</strong></p><p>Accessing the Page Parameter &ldquo;bar&rdquo;</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ .Params.bar }}</pre></div><p><strong>Parentheses can be used to group items together</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ if or (isset .Params &#34;alt&#34;) (isset .Params &#34;caption&#34;) }} Caption {{ end }}</pre></div><h2 id=variables>Variables</h2><p>Each Go template has a struct (object) made available to it. In hugo each
+template is passed either a page or a node struct depending on which type of
+page you are rendering. More details are available on the
+<a href=https://example.com/layout/variables>variables</a> page.</p><p>A variable is accessed by referencing the variable name.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>&lt;title&gt;{{ .Title }}&lt;/title&gt;</pre></div><p>Variables can also be defined and referenced.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ $address := &#34;123 Main St.&#34;}}
+{{ $address }}</pre></div><h2 id=functions>Functions</h2><p>Go template ship with a few functions which provide basic functionality. The Go
+template system also provides a mechanism for applications to extend the
+available functions with their own. <a href=https://example.com/layout/functions>Hugo template
+functions</a> provide some additional functionality we believe
+are useful for building websites. Functions are called by using their name
+followed by the required parameters separated by spaces. Template
+functions cannot be added without recompiling hugo.</p><p><strong>Example:</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ add 1 2 }}</pre></div><h2 id=includes>Includes</h2><p>When including another template you will pass to it the data it will be
+able to access. To pass along the current context please remember to
+include a trailing dot. The templates location will always be starting at
+the /layout/ directory within Hugo.</p><p><strong>Example:</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ template &#34;chrome/header.html&#34; . }}</pre></div><h2 id=logic>Logic</h2><p>Go templates provide the most basic iteration and conditional logic.</p><h3 id=iteration>Iteration</h3><p>Just like in Go, the Go templates make heavy use of range to iterate over
+a map, array or slice. The following are different examples of how to use
+range.</p><p><strong>Example 1: Using Context</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ range array }}
+    {{ . }}
+{{ end }}</pre></div><p><strong>Example 2: Declaring value variable name</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{range $element := array}}
+    {{ $element }}
+{{ end }}</pre></div><p><strong>Example 2: Declaring key and value variable name</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{range $index, $element := array}}
+    {{ $index }}
+    {{ $element }}
+{{ end }}</pre></div><h3 id=conditionals>Conditionals</h3><p>If, else, with, or, &amp; and provide the framework for handling conditional
+logic in Go Templates. Like range, each statement is closed with <code>end</code>.</p><p>Go Templates treat the following values as false:</p><ul><li>false</li><li>0</li><li>any array, slice, map, or string of length zero</li></ul><p><strong>Example 1: If</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ if isset .Params &#34;title&#34; }}&lt;h4&gt;{{ index .Params &#34;title&#34; }}&lt;/h4&gt;{{ end }}</pre></div><p><strong>Example 2: If -&gt; Else</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ if isset .Params &#34;alt&#34; }}
+    {{ index .Params &#34;alt&#34; }}
+{{else}}
+    {{ index .Params &#34;caption&#34; }}
+{{ end }}</pre></div><p><strong>Example 3: And &amp; Or</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ if and (or (isset .Params &#34;title&#34;) (isset .Params &#34;caption&#34;)) (isset .Params &#34;attr&#34;)}}</pre></div><p><strong>Example 4: With</strong></p><p>An alternative way of writing &ldquo;if&rdquo; and then referencing the same value
+is to use &ldquo;with&rdquo; instead. With rebinds the context <code>.</code> within its scope,
+and skips the block if the variable is absent.</p><p>The first example above could be simplified as:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ with .Params.title }}&lt;h4&gt;{{ . }}&lt;/h4&gt;{{ end }}</pre></div><p><strong>Example 5: If -&gt; Else If</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ if isset .Params &#34;alt&#34; }}
+    {{ index .Params &#34;alt&#34; }}
+{{ else if isset .Params &#34;caption&#34; }}
+    {{ index .Params &#34;caption&#34; }}
+{{ end }}</pre></div><h2 id=pipes>Pipes</h2><p>One of the most powerful components of Go templates is the ability to
+stack actions one after another. This is done by using pipes. Borrowed
+from unix pipes, the concept is simple, each pipeline&rsquo;s output becomes the
+input of the following pipe.</p><p>Because of the very simple syntax of Go templates, the pipe is essential
+to being able to chain together function calls. One limitation of the
+pipes is that they only can work with a single value and that value
+becomes the last parameter of the next pipeline.</p><p>A few simple examples should help convey how to use the pipe.</p><p><strong>Example 1 :</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ if eq 1 1 }} Same {{ end }}</pre></div><p>is the same as</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ eq 1 1 | if }} Same {{ end }}</pre></div><p>It does look odd to place the if at the end, but it does provide a good
+illustration of how to use the pipes.</p><p><strong>Example 2 :</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ index .Params &#34;disqus_url&#34; | html }}</pre></div><p>Access the page parameter called &ldquo;disqus_url&rdquo; and escape the HTML.</p><p><strong>Example 3 :</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{ if or (or (isset .Params &#34;title&#34;) (isset .Params &#34;caption&#34;)) (isset .Params &#34;attr&#34;)}}
+Stuff Here
+{{ end }}</pre></div><p>Could be rewritten as</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{  isset .Params &#34;caption&#34; | or isset .Params &#34;title&#34; | or isset .Params &#34;attr&#34; | if }}
+Stuff Here
+{{ end }}</pre></div><h2 id=context-aka-the-dot>Context (aka. the dot)</h2><p>The most easily overlooked concept to understand about Go templates is that {{ . }}
+always refers to the current context. In the top level of your template this
+will be the data set made available to it. Inside of a iteration it will have
+the value of the current item. When inside of a loop the context has changed. .
+will no longer refer to the data available to the entire page. If you need to
+access this from within the loop you will likely want to set it to a variable
+instead of depending on the context.</p><p><strong>Example:</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>  {{ $title := .Site.Title }}
+  {{ range .Params.tags }}
+    &lt;li&gt; &lt;a href=&#34;{{ $baseurl }}/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt; - {{ $title }} &lt;/li&gt;
+  {{ end }}</pre></div><p>Notice how once we have entered the loop the value of {{ . }} has changed. We
+have defined a variable outside of the loop so we have access to it from within
+the loop.</p><h1 id=hugo-parameters>Hugo Parameters</h1><p>Hugo provides the option of passing values to the template language
+through the site configuration (for sitewide values), or through the meta
+data of each specific piece of content. You can define any values of any
+type (supported by your front matter/config format) and use them however
+you want to inside of your templates.</p><h2 id=using-content-page-parameters>Using Content (page) Parameters</h2><p>In each piece of content you can provide variables to be used by the
+templates. This happens in the <a href=https://example.com/content/front-matter>front matter</a>.</p><p>An example of this is used in this documentation site. Most of the pages
+benefit from having the table of contents provided. Sometimes the TOC just
+doesn&rsquo;t make a lot of sense. We&rsquo;ve defined a variable in our front matter
+of some pages to turn off the TOC from being displayed.</p><p>Here is the example front matter:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>---
+title: &#34;Permalinks&#34;
+date: &#34;2013-11-18&#34;
+aliases:
+  - &#34;/doc/permalinks/&#34;
+groups: [&#34;extras&#34;]
+groups_weight: 30
+notoc: true
+---</pre></div><p>Here is the corresponding code inside of the template:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>  {{ if not .Params.notoc }}
+    &lt;div id=&#34;toc&#34; class=&#34;well col-md-4 col-sm-6&#34;&gt;
+    {{ .TableOfContents }}
+    &lt;/div&gt;
+  {{ end }}</pre></div><h2 id=using-site-config-parameters>Using Site (config) Parameters</h2><p>In your top-level configuration file (eg, <code>config.yaml</code>) you can define site
+parameters, which are values which will be available to you in chrome.</p><p>For instance, you might declare:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>params:
+  CopyrightHTML: <span style=color:#e6db74>&#39;Copyright &amp;#xA9; 2013 John Doe. All Rights Reserved.&#39;</span>
+  TwitterUser: <span style=color:#e6db74>&#39;spf13&#39;</span>
+  SidebarRecentLimit: <span style=color:#ae81ff>5</span></code></pre></div><p>Within a footer layout, you might then declare a <code>&lt;footer&gt;</code> which is only
+provided if the <code>CopyrightHTML</code> parameter is provided, and if it is given,
+you would declare it to be HTML-safe, so that the HTML entity is not escaped
+again. This would let you easily update just your top-level config file each
+January 1st, instead of hunting through your templates.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{if .Site.Params.CopyrightHTML}}&lt;footer&gt;
+&lt;div class=&#34;text-center&#34;&gt;{{.Site.Params.CopyrightHTML | safeHtml}}&lt;/div&gt;
+&lt;/footer&gt;{{end}}</pre></div><p>An alternative way of writing the &ldquo;if&rdquo; and then referencing the same value
+is to use &ldquo;with&rdquo; instead. With rebinds the context <code>.</code> within its scope,
+and skips the block if the variable is absent:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{with .Site.Params.TwitterUser}}&lt;span class=&#34;twitter&#34;&gt;
+&lt;a href=&#34;https://twitter.com/{{.}}&#34; rel=&#34;author&#34;&gt;
+&lt;img src=&#34;/images/twitter.png&#34; width=&#34;48&#34; height=&#34;48&#34; title=&#34;Twitter: {{.}}&#34;
+ alt=&#34;Twitter&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;{{end}}</pre></div><p>Finally, if you want to pull &ldquo;magic constants&rdquo; out of your layouts, you can do
+so, such as in this example:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>&lt;nav class=&#34;recent&#34;&gt;
+  &lt;h1&gt;Recent Posts&lt;/h1&gt;
+  &lt;ul&gt;{{range first .Site.Params.SidebarRecentLimit .Site.Recent}}
+    &lt;li&gt;&lt;a href=&#34;{{.RelPermalink}}&#34;&gt;{{.Title}}&lt;/a&gt;&lt;/li&gt;
+  {{end}}&lt;/ul&gt;
+&lt;/nav&gt;</pre></div><div class=post_extra><div class=copy data-share="Share Story" data-copied="Link Copied"><svg><use xlink:href="#copy"/></svg></div></div></article><aside><h3>More from Varnam</h3><ul class="posts aside"><li class=post_item><a class=post_card href=https://example.com/post/hugoisforlovers/ title="Type the way you want" style=background-image:url(https://example.com/images/type_keyboard.jpg)></a><div class=excerpt><div class=excerpt_meta><a href=https://example.com/tags/go class=post_tag>go</a><div class=copy data-share="Share Story" data-copied="Link Copied"><svg><use xlink:href="#copy"/></svg></div></div><h3 class=post_link><a href=https://example.com/post/hugoisforlovers/>Type the way you want</a></h3><p class=pale>Get your message across in the language and style you want. Switching among over many …</p></div></li></ul></aside></div><script src=https://example.com/js/autosize.min.js></script><script src=https://example.com/js/timeago.js></script></main><svg width="0" height="0" class="hidden"><symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy"><path d="M502.714.0H240.428C194.178.0 153 42.425 153 87.429l-25.267.59c-46.228.0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249.0 87.428-42.424 87.428-87.428h21.857c46.25.0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95.0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95.0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337.0 87.975.0 87.975.0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277.0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065.0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065.0 21.857-9.771 21.857-21.835.0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065.0-21.857 9.77-21.857 21.834.0 12.066 9.792 21.836 21.857 21.836h196.714c12.065.0 21.857-9.77 21.857-21.836.0-12.064-9.792-21.834-21.857-21.834z"/></symbol><symbol viewBox="0 0 60.015 60.015" xmlns="http://www.w3.org/2000/svg" id="reply"><path d="M42.007.0h-24c-9.925.0-18 8.075-18 18v14c0 9.59 7.538 17.452 17 17.973v8.344a1.694 1.694.0 0 0 1.699 1.698c.44.0.873-.173 1.198-.498l1.876-1.876C26.708 52.713 33.259 50 40.227 50h1.78c9.925.0 18-8.075 18-18V18c0-9.925-8.075-18-18-18zm16 32c0 8.822-7.178 16-16 16h-1.78c-7.502.0-14.556 2.921-19.86 8.226l-1.359 1.359V44a1 1 0 1 0-2 0v3.949c-8.356-.52-15-7.465-15-15.949V18c0-8.822 7.178-16 16-16h24c8.822.0 16 7.178 16 16v14z"/></symbol></svg><footer class=footer><div class="footer_inner wrap pale"><p>&copy;&nbsp;<span class=year></span>&nbsp;Varnam.</p></div></footer><script src=https://example.com/js/index.min.38bfe630b7912bb85ed0c16d4a1a3f922fe6d3fd3406050bf77dceaf7ddcae9b403413fea02eb90bd3b642d54900eebaec24ced4ba31c25f396ddb80298751d0.js></script></body></html>

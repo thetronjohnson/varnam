@@ -1,0 +1,87 @@
+<!doctype html><html lang=en><head><title>Migrate to hugo from jekyll | Varnam</title><meta charset=utf-8><meta name=generator content="Hugo 0.58.3"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:locale content=en_US><meta property=og:type content=article><meta property=og:title content="Migrate to Hugo from Jekyll"><meta name=description content="Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content …"><meta property=og:description content="Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content …"><meta property=og:url content=https://example.com/post/migrate-from-jekyll/><meta property=og:image content=https://example.com/images/speakers.jpg><meta name=twitter:card content=summary_large_image><meta name=twitter:creator content><meta name=twitter:title content="Migrate to Hugo from Jekyll"><meta property=twitter:description content="Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content …"><meta name=twitter:image content=https://example.com/images/speakers.jpg><link rel=apple-touch-icon sizes=180x180 href=https://example.com/images/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://example.com/images/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://example.com/images/icons/favicon-16x16.png><link rel=manifest href=https://example.com/images/icons/site.webmanifest><link rel=canonical href=https://example.com/post/migrate-from-jekyll/><link rel=stylesheet href=https://example.com/css/styles.3581b5fd32b23ccd509a170d030760fdfbaa7ad633dde8fe599d88fb614e1975255e4fe09db386aec2ef5b2c397fbddd1566efa790bc3f212b1498eeb77d9c53.css integrity="sha512-NYG1/TKyPM1QmhcNAwdg/fuqetYz3ej&#43;WZ2I&#43;2FOGXUlXk/gnbOGrsLvWyw5f73dFWbvp5C8PyErFJjut32cUw=="></head><body><div class=nav-drop><div class=nav-body><a href=https://example.com/about/ class=nav_item>About</a>
+<a href=https://example.com/editor/ class=nav_item>Try it now</a>
+<a href=https://example.com/downloads/ class=nav_item>Downloads</a>
+<a href=https://example.com/documentation/ class=nav_item>Documentation</a>
+<a href=https://example.com/issues/ class=nav_item>Issues</a>
+<a href=https://example.com/git/ class=nav_item>Git</a><div class=nav-close></div></div></div><header class=nav><nav class=nav-menu><a href=https://example.com/ class="nav-brand nav_item">Varnam</a><div class=nav_bar-wrap><div class=nav_bar></div></div></nav></header><main><section class=post_header style=background-image:url(https://example.com/images/speakers.jpg)><h1 class=post_title>Migrate to Hugo from Jekyll</h1></section><div class=post><article class=post_content><h2 id=move-static-content-to-static>Move static content to <code>static</code></h2><p>Jekyll has a rule that any directory not starting with <code>_</code> will be copied as-is to the <code>_site</code> output. Hugo keeps all static content under <code>static</code>. You should therefore move it all there.
+With Jekyll, something that looked like</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>▾ &lt;root&gt;/
+    ▾ images/
+        logo.png</pre></div><p>should become</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>▾ &lt;root&gt;/
+    ▾ static/
+        ▾ images/
+            logo.png</pre></div><p>Additionally, you&rsquo;ll want any files that should reside at the root (such as <code>CNAME</code>) to be moved to <code>static</code>.</p><h2 id=create-your-hugo-configuration-file>Create your Hugo configuration file</h2><p>Hugo can read your configuration as JSON, YAML or TOML. Hugo supports parameters custom configuration too. Refer to the <a href=https://example.com/overview/configuration/>Hugo configuration documentation</a> for details.</p><h2 id=set-your-configuration-publish-folder-to-site>Set your configuration publish folder to <code>_site</code></h2><p>The default is for Jekyll to publish to <code>_site</code> and for Hugo to publish to <code>public</code>. If, like me, you have <a href=http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html><code>_site</code> mapped to a git submodule on the <code>gh-pages</code> branch</a>, you&rsquo;ll want to do one of two alternatives:</p><ol><li><p>Change your submodule to point to map <code>gh-pages</code> to public instead of <code>_site</code> (recommended).</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>git submodule deinit _site
+git rm _site
+git submodule add -b gh-pages git@github.com:your-username/your-repo.git public</pre></div></li><li><p>Or, change the Hugo configuration to use <code>_site</code> instead of <code>public</code>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{
+    ..
+    &#34;publishdir&#34;: &#34;_site&#34;,
+    ..
+}</pre></div></li></ol><h2 id=convert-jekyll-templates-to-hugo-templates>Convert Jekyll templates to Hugo templates</h2><p>That&rsquo;s the bulk of the work right here. The documentation is your friend. You should refer to <a href=http://jekyllrb.com/docs/templates/>Jekyll&rsquo;s template documentation</a> if you need to refresh your memory on how you built your blog and <a href=https://example.com/layout/templates/>Hugo&rsquo;s template</a> to learn Hugo&rsquo;s way.</p><p>As a single reference data point, converting my templates for <a href=http://heyitsalex.net/>heyitsalex.net</a> took me no more than a few hours.</p><h2 id=convert-jekyll-plugins-to-hugo-shortcodes>Convert Jekyll plugins to Hugo shortcodes</h2><p>Jekyll has <a href=http://jekyllrb.com/docs/plugins/>plugins</a>; Hugo has <a href=https://example.com/doc/shortcodes/>shortcodes</a>. It&rsquo;s fairly trivial to do a port.</p><h3 id=implementation>Implementation</h3><p>As an example, I was using a custom <a href=https://github.com/alexandre-normand/alexandre-normand/blob/74bb12036a71334fdb7dba84e073382fc06908ec/_plugins/image_tag.rb><code>image_tag</code></a> plugin to generate figures with caption when running Jekyll. As I read about shortcodes, I found Hugo had a nice built-in shortcode that does exactly the same thing.</p><p>Jekyll&rsquo;s plugin:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>module Jekyll
+  class ImageTag &lt; Liquid::Tag
+    @url = nil
+    @caption = nil
+    @class = nil
+    @link = nil
+    // Patterns
+    IMAGE_URL_WITH_CLASS_AND_CAPTION =
+    IMAGE_URL_WITH_CLASS_AND_CAPTION_AND_LINK = /(\w+)(\s+)((https?:\/\/|\/)(\S+))(\s+)&#34;(.*?)&#34;(\s+)-&gt;((https?:\/\/|\/)(\S+))(\s*)/i
+    IMAGE_URL_WITH_CAPTION = /((https?:\/\/|\/)(\S+))(\s+)&#34;(.*?)&#34;/i
+    IMAGE_URL_WITH_CLASS = /(\w+)(\s+)((https?:\/\/|\/)(\S+))/i
+    IMAGE_URL = /((https?:\/\/|\/)(\S+))/i
+    def initialize(tag_name, markup, tokens)
+      super
+      if markup =~ IMAGE_URL_WITH_CLASS_AND_CAPTION_AND_LINK
+        @class   = $1
+        @url     = $3
+        @caption = $7
+        @link = $9
+      elsif markup =~ IMAGE_URL_WITH_CLASS_AND_CAPTION
+        @class   = $1
+        @url     = $3
+        @caption = $7
+      elsif markup =~ IMAGE_URL_WITH_CAPTION
+        @url     = $1
+        @caption = $5
+      elsif markup =~ IMAGE_URL_WITH_CLASS
+        @class = $1
+        @url   = $3
+      elsif markup =~ IMAGE_URL
+        @url = $1
+      end
+    end
+    def render(context)
+      if @class
+        source = &#34;&lt;figure class=&#39;#{@class}&#39;&gt;&#34;
+      else
+        source = &#34;&lt;figure&gt;&#34;
+      end
+      if @link
+        source += &#34;&lt;a href=\&#34;#{@link}\&#34;&gt;&#34;
+      end
+      source += &#34;&lt;img src=\&#34;#{@url}\&#34;&gt;&#34;
+      if @link
+        source += &#34;&lt;/a&gt;&#34;
+      end
+      source += &#34;&lt;figcaption&gt;#{@caption}&lt;/figcaption&gt;&#34; if @caption
+      source += &#34;&lt;/figure&gt;&#34;
+      source
+    end
+  end
+end
+Liquid::Template.register_tag(&#39;image&#39;, Jekyll::ImageTag)</pre></div><p>is written as this Hugo shortcode:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>&lt;!-- image --&gt;
+&lt;figure {{ with .Get &#34;class&#34; }}class=&#34;{{.}}&#34;{{ end }}&gt;
+    {{ with .Get &#34;link&#34;}}&lt;a href=&#34;{{.}}&#34;&gt;{{ end }}
+        &lt;img src=&#34;{{ .Get &#34;src&#34; }}&#34; {{ if or (.Get &#34;alt&#34;) (.Get &#34;caption&#34;) }}alt=&#34;{{ with .Get &#34;alt&#34;}}{{.}}{{else}}{{ .Get &#34;caption&#34; }}{{ end }}&#34;{{ end }} /&gt;
+    {{ if .Get &#34;link&#34;}}&lt;/a&gt;{{ end }}
+    {{ if or (or (.Get &#34;title&#34;) (.Get &#34;caption&#34;)) (.Get &#34;attr&#34;)}}
+    &lt;figcaption&gt;{{ if isset .Params &#34;title&#34; }}
+        {{ .Get &#34;title&#34; }}{{ end }}
+        {{ if or (.Get &#34;caption&#34;) (.Get &#34;attr&#34;)}}&lt;p&gt;
+        {{ .Get &#34;caption&#34; }}
+        {{ with .Get &#34;attrlink&#34;}}&lt;a href=&#34;{{.}}&#34;&gt; {{ end }}
+            {{ .Get &#34;attr&#34; }}
+        {{ if .Get &#34;attrlink&#34;}}&lt;/a&gt; {{ end }}
+        &lt;/p&gt; {{ end }}
+    &lt;/figcaption&gt;
+    {{ end }}
+&lt;/figure&gt;
+&lt;!-- image --&gt;</pre></div><h3 id=usage>Usage</h3><p>I simply changed:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{% image full http://farm5.staticflickr.com/4136/4829260124_57712e570a_o_d.jpg &#34;One of my favorite touristy-type photos. I secretly waited for the good light while we were &#34;having fun&#34; and took this. Only regret: a stupid pole in the top-left corner of the frame I had to clumsily get rid of at post-processing.&#34; -&gt;http://www.flickr.com/photos/alexnormand/4829260124/in/set-72157624547713078/ %}</pre></div><p>to this (this example uses a slightly extended version named <code>fig</code>, different than the built-in <code>figure</code>):</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>{{% fig class=&#34;full&#34; src=&#34;http://farm5.staticflickr.com/4136/4829260124_57712e570a_o_d.jpg&#34; title=&#34;One of my favorite touristy-type photos. I secretly waited for the good light while we were having fun and took this. Only regret: a stupid pole in the top-left corner of the frame I had to clumsily get rid of at post-processing.&#34; link=&#34;http://www.flickr.com/photos/alexnormand/4829260124/in/set-72157624547713078/&#34; %}}</pre></div><p>As a bonus, the shortcode named parameters are, arguably, more readable.</p><h2 id=finishing-touches>Finishing touches</h2><h3 id=fix-content>Fix content</h3><p>Depending on the amount of customization that was done with each post with Jekyll, this step will require more or less effort. There are no hard and fast rules here except that <code>hugo server --watch</code> is your friend. Test your changes and fix errors as needed.</p><h3 id=clean-up>Clean up</h3><p>You&rsquo;ll want to remove the Jekyll configuration at this point. If you have anything else that isn&rsquo;t used, delete it.</p><h2 id=a-practical-example-in-a-diff>A practical example in a diff</h2><p><a href=http://heyitsalex.net/>Hey, it&rsquo;s Alex</a> was migrated in less than a <em>father-with-kids day</em> from Jekyll to Hugo. You can see all the changes (and screw-ups) by looking at this <a href=https://github.com/alexandre-normand/alexandre-normand/compare/869d69435bd2665c3fbf5b5c78d4c22759d7613a...b7f6605b1265e83b4b81495423294208cc74d610>diff</a>.</p><div class=post_extra><div class=copy data-share="Share Story" data-copied="Link Copied"><svg><use xlink:href="#copy"/></svg></div></div></article><aside><h3>More from Varnam</h3><ul class="posts aside"><li class=post_item><a class=post_card href=https://example.com/post/creating-a-new-theme/ title="Cross Platform Transliterator" style=background-image:url(https://example.com/images/artist.jpg)></a><div class=excerpt><div class=excerpt_meta><div class=copy data-share="Share Story" data-copied="Link Copied"><svg><use xlink:href="#copy"/></svg></div></div><h3 class=post_link><a href=https://example.com/post/creating-a-new-theme/>Cross Platform Transliterator</a></h3><p class=pale>Open Source Varnam is a Cross Platform Predictive Transliterator for Indian Languages …</p></div></li><li class=post_item><a class=post_card href=https://example.com/post/goisforlovers/ title="Personalized for you, by you" style=background-image:url(https://example.com/images/fast-lane.jpg)></a><div class=excerpt><div class=excerpt_meta><a href=https://example.com/tags/go class=post_tag>go</a><div class=copy data-share="Share Story" data-copied="Link Copied"><svg><use xlink:href="#copy"/></svg></div></div><h3 class=post_link><a href=https://example.com/post/goisforlovers/>Personalized for you, by you</a></h3><p class=pale>Varnam remembers your corrections and maintains a custom dictionary for new or uncommon …</p></div></li></ul></aside></div><script src=https://example.com/js/autosize.min.js></script><script src=https://example.com/js/timeago.js></script></main><svg width="0" height="0" class="hidden"><symbol viewBox="0 0 699.428 699.428" xmlns="http://www.w3.org/2000/svg" id="copy"><path d="M502.714.0H240.428C194.178.0 153 42.425 153 87.429l-25.267.59c-46.228.0-84.019 41.834-84.019 86.838V612c0 45.004 41.179 87.428 87.429 87.428H459c46.249.0 87.428-42.424 87.428-87.428h21.857c46.25.0 87.429-42.424 87.429-87.428v-349.19zM459 655.715H131.143c-22.95.0-43.714-21.441-43.714-43.715V174.857c0-22.272 18.688-42.993 41.638-42.993l23.933-.721v393.429C153 569.576 194.178 612 240.428 612h262.286c0 22.273-20.765 43.715-43.714 43.715zm153-131.143c0 22.271-20.765 43.713-43.715 43.713H240.428c-22.95.0-43.714-21.441-43.714-43.713V87.429c0-22.272 20.764-43.714 43.714-43.714H459c-.351 50.337.0 87.975.0 87.975.0 45.419 40.872 86.882 87.428 86.882H612zm-65.572-349.715c-23.277.0-43.714-42.293-43.714-64.981V44.348L612 174.857zm-43.714 131.537H306c-12.065.0-21.857 9.77-21.857 21.835s9.792 21.835 21.857 21.835h196.714c12.065.0 21.857-9.771 21.857-21.835.0-12.065-9.792-21.835-21.857-21.835zm0 109.176H306c-12.065.0-21.857 9.77-21.857 21.834.0 12.066 9.792 21.836 21.857 21.836h196.714c12.065.0 21.857-9.77 21.857-21.836.0-12.064-9.792-21.834-21.857-21.834z"/></symbol><symbol viewBox="0 0 60.015 60.015" xmlns="http://www.w3.org/2000/svg" id="reply"><path d="M42.007.0h-24c-9.925.0-18 8.075-18 18v14c0 9.59 7.538 17.452 17 17.973v8.344a1.694 1.694.0 0 0 1.699 1.698c.44.0.873-.173 1.198-.498l1.876-1.876C26.708 52.713 33.259 50 40.227 50h1.78c9.925.0 18-8.075 18-18V18c0-9.925-8.075-18-18-18zm16 32c0 8.822-7.178 16-16 16h-1.78c-7.502.0-14.556 2.921-19.86 8.226l-1.359 1.359V44a1 1 0 1 0-2 0v3.949c-8.356-.52-15-7.465-15-15.949V18c0-8.822 7.178-16 16-16h24c8.822.0 16 7.178 16 16v14z"/></symbol></svg><footer class=footer><div class="footer_inner wrap pale"><p>&copy;&nbsp;<span class=year></span>&nbsp;Varnam.</p></div></footer><script src=https://example.com/js/index.min.38bfe630b7912bb85ed0c16d4a1a3f922fe6d3fd3406050bf77dceaf7ddcae9b403413fea02eb90bd3b642d54900eebaec24ced4ba31c25f396ddb80298751d0.js></script></body></html>
