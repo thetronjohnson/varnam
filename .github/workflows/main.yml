@@ -22,7 +22,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
-      - run: git rm --cached static/editor
       - name: Run Script
         run: chmod +x build-editor.sh && ./build-editor.sh
       - name: Setup Hugo

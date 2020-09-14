@@ -1,8 +1,3 @@
-git rm --cached static/editor
-
-git submodule update --init --recursive
-
-
 cd varnam-editor
 npm install
 
