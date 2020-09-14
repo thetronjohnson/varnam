@@ -20,13 +20,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - run: git rm --cached static/editor
       - name: Setup Hugo
-        uses: peaceiris/act@ions-hugo@v2
+        uses: peaceiris/actions-hugo@v2
         with:
-            hugo-version: '0.67.1'
+            hugo-version: '0.58.3'
             extended: true
       - name: Build
         run: hugo --minify
