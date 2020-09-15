@@ -4,6 +4,10 @@ An cross-platform Indian language transliterator. Easily type Indian languages o
 
 [TypeIndianLang.Online](https://TypeIndianLang.Online)
 
+This repo holds the new website for Varnam.
+
+## Varnam Project
+
 Repos working on (ordered by layer. From package to the library) :
 
 * [varnam](https://github.com/thetronjohnson/varnam) - The new Varnam Website : [TypeIndianLang.Online](https://TypeIndianLang.Online)
@@ -33,3 +37,12 @@ The complete plan for Varnam : https://pad.disroot.org/p/varnam
 ### Varnam Editor Design
 
 https://www.figma.com/file/DjKTWfeLtBVKKQ3T8uqFPq/Varnam_Editor?node-id=0%3A1
+
+## Development
+
+Install dependencies and run hugo server to play with the code :
+
+```
+git submodule update --init --recursive --remote
+hugo server
+```
