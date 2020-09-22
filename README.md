@@ -22,7 +22,7 @@ Project Tracker -  https://github.com/users/subins2000/projects/2
 
 Things done as part of [FOSSHack](https://fossunited.org/hackathon) :
 
-* Try The Project @ [TypeIndianLang.Online](https://TypeIndianLang.Online)
+* Try The Project @ [TypeIndianLang.Online/editor](https://TypeIndianLang.Online/editor)
 * Made the cross-platform Varnam Desktop app : https://github.com/athul/varnam-desktop
 * Made the Varnam Editor : https://github.com/thetronjohnson/varnam-editor
 * New Varnam Website (hugo) : this repo - [TypeIndianLang.Online](https://TypeIndianLang.Online)
