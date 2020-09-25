@@ -1,5 +1,5 @@
 cd varnam-editor
-npm install
+yarn install
 
 export VUE_PUBLIC_PATH="/editor/"
 npm run build
